@@ -1,9 +1,13 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import { Navbar } from './components';
+import './App.scss';
+import { BookList, Navbar } from './components';
 
 function App() {
-  return <Navbar />;
+  return (
+    <div className="App">
+      <Navbar />
+      <BookList />
+    </div>
+  );
 }
 
 export default App;

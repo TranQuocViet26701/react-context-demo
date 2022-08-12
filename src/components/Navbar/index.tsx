@@ -1,12 +1,8 @@
-import React from 'react';
-
 import styles from './Navbar.module.scss';
 
-type Props = {};
-
-export default function Navbar({}: Props) {
+export default function Navbar() {
   return (
-    <nav>
+    <nav className={styles.navBar}>
       <h1>Context App</h1>
       <ul>
         <li>Home</li>
