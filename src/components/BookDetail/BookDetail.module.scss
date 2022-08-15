@@ -1,0 +1,17 @@
+.book-detail {
+  cursor: pointer;
+
+  .name {
+    font-weight: 700;
+    text-align: start;
+  }
+
+  .author {
+    text-align: end;
+    font-style: italic;
+  }
+
+  &:hover {
+    background-color: #ffa39e;
+  }
+}
