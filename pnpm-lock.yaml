@@ -5,23 +5,27 @@ specifiers:
   '@commitlint/config-conventional': ^17.0.3
   '@types/react': ^18.0.15
   '@types/react-dom': ^18.0.6
+  '@types/uuid': ^8.3.4
   '@vitejs/plugin-react': ^2.0.0
   husky: ^8.0.1
   react: ^18.2.0
   react-dom: ^18.2.0
   sass: ^1.54.4
   typescript: ^4.6.4
+  uuid: ^8.3.2
   vite: ^3.0.0
 
 dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  uuid: 8.3.2
 
 devDependencies:
   '@commitlint/cli': 17.0.3
   '@commitlint/config-conventional': 17.0.3
   '@types/react': 18.0.17
   '@types/react-dom': 18.0.6
+  '@types/uuid': 8.3.4
   '@vitejs/plugin-react': 2.0.1_vite@3.0.6
   husky: 8.0.1
   sass: 1.54.4
@@ -570,6 +574,10 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
+    dev: true
+
+  /@types/uuid/8.3.4:
+    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
     dev: true
 
   /@vitejs/plugin-react/2.0.1_vite@3.0.6:
@@ -2032,6 +2040,11 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: false
 
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}

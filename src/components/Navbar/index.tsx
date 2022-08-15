@@ -1,10 +1,11 @@
 import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import styles from './Navbar.module.scss';
 
 export default function Navbar() {
-  const themeContext = useContext(ThemeContext);
-  const { isLightTheme, light, dark } = themeContext;
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+  const { isAuthenticated } = useContext(AuthContext);
   const theme = isLightTheme ? light : dark;
 
   return (
@@ -12,11 +13,16 @@ export default function Navbar() {
       className={styles.navBar}
       style={{ backgroundColor: theme.ui, color: theme.syntax }}
     >
-      <h1>Context App</h1>
+      <div className={styles.rowHeader}>
+        <h1>Book store</h1>
+        <span style={{ borderColor: theme.syntax }}>
+          {isAuthenticated ? 'Logged in' : 'Logged out'}
+        </span>
+      </div>
       <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
+        <li className={styles.active}>Design</li>
+        <li>Detective</li>
+        <li>Scientific</li>
       </ul>
     </nav>
   );

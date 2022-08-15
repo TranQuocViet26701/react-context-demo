@@ -5,18 +5,20 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview", 
+    "preview": "vite preview",
     "postinstall": "husky install"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/uuid": "^8.3.4",
     "@vitejs/plugin-react": "^2.0.0",
     "husky": "^8.0.1",
     "sass": "^1.54.4",

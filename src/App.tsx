@@ -1,6 +1,7 @@
 import './App.scss';
 import { BookList, ButtonToggle, Navbar } from './components';
 import AuthContextProvider from './contexts/AuthContext';
+import BookContextProvider from './contexts/BookContext';
 import ThemeContextProvider from './contexts/ThemeContext';
 
 function App() {
@@ -11,7 +12,9 @@ function App() {
       <AuthContextProvider>
         <ThemeContextProvider>
           <Navbar />
-          <BookList />
+          <BookContextProvider>
+            <BookList />
+          </BookContextProvider>
           <ButtonToggle />
         </ThemeContextProvider>
       </AuthContextProvider>
