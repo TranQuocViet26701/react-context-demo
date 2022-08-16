@@ -1,12 +1,12 @@
-import { createContext, useState } from 'react';
-import { AuthContextInterface } from '../@types/auth';
+import { createContext, useReducer, useState } from 'react';
+import { AuthContextType } from '../@types/auth';
+import AuthReducer from '../reducers/authReducer';
 
-const defaultAuthContext: AuthContextInterface = {
+const initialAuthContext: AuthContextType = {
   isAuthenticated: false,
 };
 
-export const AuthContext =
-  createContext<AuthContextInterface>(defaultAuthContext);
+export const AuthContext = createContext<AuthContextType>(initialAuthContext);
 
 export interface AuthContextProviderProps {
   children: React.ReactNode;
@@ -15,17 +15,10 @@ export interface AuthContextProviderProps {
 export default function AuthContextProvider({
   children,
 }: AuthContextProviderProps) {
-  const [auth, setAuth] = useState(defaultAuthContext);
-
-  const onToggleAuth = () => {
-    setAuth((prev) => ({
-      ...prev,
-      isAuthenticated: !prev.isAuthenticated,
-    }));
-  };
+  const [state, dispatch] = useReducer(AuthReducer, initialAuthContext);
 
   return (
-    <AuthContext.Provider value={{ ...auth, onToggleAuth }}>
+    <AuthContext.Provider value={{ ...state, dispatch }}>
       {children}
     </AuthContext.Provider>
   );

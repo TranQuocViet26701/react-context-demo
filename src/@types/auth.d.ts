@@ -1,4 +1,11 @@
-export interface AuthContextInterface {
+import { AuthActionKind } from '../reducers/authReducer';
+
+export interface AuthAction {
+  type: AuthActionKind;
+  payload: null;
+}
+
+export interface AuthContextType {
   isAuthenticated: boolean;
-  onToggleAuth?: () => void;
+  dispatch?: React.Dispatch<AuthAction>;
 }

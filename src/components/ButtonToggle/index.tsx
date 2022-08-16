@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { AuthActionKind } from '../../reducers/authReducer';
 import BookForm from '../BookForm';
 import styles from './ButtonToggle.module.scss';
 
@@ -8,7 +9,7 @@ export interface IButtonToggleProps {}
 
 export default function ButtonToggle(props: IButtonToggleProps) {
   const { onToggleTheme, isLightTheme, light, dark } = useContext(ThemeContext);
-  const { onToggleAuth } = useContext(AuthContext);
+  const { isAuthenticated, dispatch: dispatchAuth } = useContext(AuthContext);
 
   const theme = isLightTheme ? light : dark;
 
@@ -19,9 +20,10 @@ export default function ButtonToggle(props: IButtonToggleProps) {
   };
 
   const handleToggleAuth = () => {
-    if (!onToggleAuth) return;
-
-    onToggleAuth();
+    dispatchAuth?.({
+      type: isAuthenticated ? AuthActionKind.LOG_OUT : AuthActionKind.LOG_IN,
+      payload: null,
+    });
   };
 
   return (
