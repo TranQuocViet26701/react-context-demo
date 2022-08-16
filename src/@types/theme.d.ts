@@ -1,12 +1,18 @@
+import { ThemeActionKind } from './../reducers/themeReducer';
 export interface ThemeInterface {
   syntax: string;
   ui: string;
   bg: string;
 }
 
-export interface ThemeContextInterface {
+export interface ThemeAction {
+  type: ThemeActionKind;
+  payload: null;
+}
+
+export interface ThemeContextType {
   isLightTheme: boolean;
   dark: ThemeInterface;
   light: ThemeInterface;
-  onToggleTheme?: () => void;
+  dispatch?: React.Dispatch<ThemeAction>;
 }

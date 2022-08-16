@@ -1,14 +1,15 @@
-import { createContext, useState } from 'react';
-import { ThemeContextInterface } from '../@types/theme';
+import { createContext, useReducer } from 'react';
+import { ThemeContextType } from '../@types/theme';
+import themeReducer from '../reducers/themeReducer';
 
-const defaultThemeContext: ThemeContextInterface = {
+const initialThemeContext: ThemeContextType = {
   isLightTheme: true,
   light: { syntax: '#555', ui: '#ddd', bg: '#eee' },
   dark: { syntax: '#F5F5F5', ui: 'rgba(0, 0, 0, 0.85)', bg: '#555' },
 };
 
 export const ThemeContext =
-  createContext<ThemeContextInterface>(defaultThemeContext);
+  createContext<ThemeContextType>(initialThemeContext);
 
 export interface ThemeContextProviderProps {
   children: React.ReactNode;
@@ -17,17 +18,10 @@ export interface ThemeContextProviderProps {
 export default function ThemeContextProvider({
   children,
 }: ThemeContextProviderProps) {
-  const [theme, setTheme] =
-    useState<ThemeContextInterface>(defaultThemeContext);
+  const [state, dispatch] = useReducer(themeReducer, initialThemeContext);
 
-  const onToggleTheme = () => {
-    setTheme((prev) => ({
-      ...prev,
-      isLightTheme: !prev.isLightTheme,
-    }));
-  };
   return (
-    <ThemeContext.Provider value={{ ...theme, onToggleTheme }}>
+    <ThemeContext.Provider value={{ ...state, dispatch }}>
       {children}
     </ThemeContext.Provider>
   );
