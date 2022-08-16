@@ -1,8 +1,9 @@
-import { createContext, useState } from 'react';
+import { createContext, useReducer } from 'react';
 import { v4 as uuid } from 'uuid';
-import { BookContextInterface, BookInterface } from '../@types/book';
+import { BookContextType } from '../@types/book';
+import BookReducer from '../reducers/bookReducer';
 
-const defaultBookContext: BookContextInterface = {
+const initialState: BookContextType = {
   bookList: [
     {
       id: uuid(),
@@ -22,8 +23,7 @@ const defaultBookContext: BookContextInterface = {
   ],
 };
 
-export const BookContext =
-  createContext<BookContextInterface>(defaultBookContext);
+export const BookContext = createContext<BookContextType>(initialState);
 
 export interface BookContextProviderProps {
   children: React.ReactNode;
@@ -32,33 +32,8 @@ export interface BookContextProviderProps {
 export default function BookContextProvider({
   children,
 }: BookContextProviderProps) {
-  const [bookContext, setBookContext] = useState(defaultBookContext);
+  const { Provider } = BookContext;
+  const [state, dispatch] = useReducer(BookReducer, initialState);
 
-  const addBook = (newBook: BookInterface) => {
-    setBookContext((prev) => {
-      return {
-        ...prev,
-        bookList: [...prev.bookList, newBook],
-      };
-    });
-  };
-
-  const removeBook = (id: string) => {
-    const removedBookList = bookContext.bookList.filter(
-      (book) => book.id !== id
-    );
-
-    setBookContext((prev) => {
-      return {
-        ...prev,
-        bookList: [...removedBookList],
-      };
-    });
-  };
-
-  return (
-    <BookContext.Provider value={{ ...bookContext, addBook, removeBook }}>
-      {children}
-    </BookContext.Provider>
-  );
+  return <Provider value={{ ...state, dispatch }}>{children}</Provider>;
 }

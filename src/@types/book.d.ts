@@ -1,11 +1,17 @@
-export interface BookInterface {
+import { BookActionKind } from '../reducers/bookReducer';
+
+export interface Book {
   id: string;
   name: string;
   author: string;
 }
 
-export interface BookContextInterface {
+export interface BookAction {
+  type: BookActionKind;
+  payload: BookInterface | string;
+}
+
+export interface BookContextType {
   bookList: BookInterface[];
-  addBook?: (BookInterface) => void;
-  removeBook?: (string) => void;
+  dispatch?: React.Dispatch<BookAction>;
 }

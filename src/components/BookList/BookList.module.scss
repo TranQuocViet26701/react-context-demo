@@ -1,7 +1,7 @@
 .book-list {
   width: 100%;
   padding: 20px;
-  border-radius: 0 0 50px 50px;
+  overflow-y: scroll;
 
   ul {
     padding: 0;

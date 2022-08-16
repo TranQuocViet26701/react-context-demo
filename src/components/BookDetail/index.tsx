@@ -1,24 +1,19 @@
 import { useContext } from 'react';
+import { Book } from '../../@types/book';
 import { BookContext } from '../../contexts/BookContext';
+import { BookActionKind } from '../../reducers/bookReducer';
 import styles from './BookDetail.module.scss';
 
-export interface BookDetailProps {
-  id: string;
-  name: string;
-  author: string;
-}
-
-export default function BookDetail({ id, name, author }: BookDetailProps) {
-  const { removeBook } = useContext(BookContext);
-
-  const handleRemoveBook = () => {
-    if (!removeBook) return;
-
-    removeBook(id);
-  };
+export default function BookDetail({ id, name, author }: Book) {
+  const { dispatch } = useContext(BookContext);
 
   return (
-    <li onClick={handleRemoveBook} className={styles.bookDetail}>
+    <li
+      onClick={() =>
+        dispatch?.({ type: BookActionKind.REMOVE_BOOK, payload: id })
+      }
+      className={styles.bookDetail}
+    >
       <div className={styles.name}>{name}</div>
       <div className={styles.author}>{author}</div>
     </li>

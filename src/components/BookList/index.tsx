@@ -4,9 +4,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import BookDetail from '../BookDetail';
 import styles from './BookList.module.scss';
 
-export interface BookListProps {}
-
-export default function BookList(props: BookListProps) {
+export default function BookList() {
   const themeContext = useContext(ThemeContext);
   const { bookList } = useContext(BookContext);
   const { isLightTheme, light, dark } = themeContext;
