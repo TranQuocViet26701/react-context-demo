@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 import { v4 as uuid } from 'uuid';
 import { BookContextType } from '../@types/book';
 import BookReducer from '../reducers/bookReducer';
@@ -33,7 +33,14 @@ export default function BookContextProvider({
   children,
 }: BookContextProviderProps) {
   const { Provider } = BookContext;
-  const [state, dispatch] = useReducer(BookReducer, initialState);
+  const [state, dispatch] = useReducer(BookReducer, {}, () => {
+    const bookList = localStorage.getItem('bookList');
+    return bookList ? { bookList: JSON.parse(bookList) } : { bookList: [] };
+  });
+
+  useEffect(() => {
+    localStorage.setItem('bookList', JSON.stringify(state.bookList));
+  }, [state.bookList]);
 
   return <Provider value={{ ...state, dispatch }}>{children}</Provider>;
 }
